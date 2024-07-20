@@ -4,7 +4,7 @@ dv.style.opacity = 0;
 var val = 0;
 
 function timer(){
-	var start = new Date(2018, 0, 27);
+	var start = new Date(2024, 5 , 27, 18, 30);
 	var t = new Date() - start;
 	var d = Math.floor(t / 1000 / 60 / 60 / 24);
 	var h = Math.floor(t / 1000 / 60 / 60 % 24);
@@ -27,20 +27,25 @@ function timer(){
 
 function fadein(){
 	if(val < 1){
-		val += 0.01;
+		val += 0.025;
 		dv.style.opacity = val;
 	}
 	else{
+		clearInterval(fadeinInterval);
 		if(ok == 2){
 			ok += 1;
 		}
 	}
 }
 
+var fadeInterval;
+var fadeinInterval;
+
 timer();
 setInterval(timer, 1000);
-setInterval(function(){
+fadeInterval = setInterval(function(){
 	if(ok == 2){
-		setInterval(fadein, 100);
+		clearInterval(fadeInterval);
+		fadeinInterval = setInterval(fadein, 50);
 	}
 }, 50)
